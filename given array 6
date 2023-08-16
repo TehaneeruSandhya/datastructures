@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+bool searchRegNo(int regNos[], int size, int targetRegNo) {
+    for (int i = 0; i < size; i++) {
+        if (regNos[i] == targetRegNo) {
+            return true; 
+        }
+    }
+    return false; 
+}
+
+int main() {
+    int regNos[] = {123, 456, 789, 101, 202};
+    int size = sizeof(regNos) / sizeof(regNos[0]);
+    
+    int targetRegNo = 789; 
+    
+    if (searchRegNo(regNos, size, targetRegNo)) {
+        printf("Registration number %d found.\n", targetRegNo);
+    } else {
+        printf("Registration number %d not found.\n", targetRegNo);
+    }
+    
+    return 0;
+}
+output
+Registration number 789 found.
