@@ -1,0 +1,23 @@
+#include<stdido.h>
+#include<conio.h>
+int fibnocci(int);
+int main()
+{
+int n,i;
+printf("Enter the number of element you want in series:");
+scanf("%d",&n);
+printf("fibinocci series:\n");
+for(i=0;i<n;i++)
+{
+printf("%d\n",fibinocci(i));
+}
+getch();
+}
+int fibinocci(int i)
+{
+if(i==0)
+return 0;
+else if(i==1)
+return 1;
+else return(fibinocci(i-1)+fibinocci(i-2));
+}
