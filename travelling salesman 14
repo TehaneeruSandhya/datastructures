@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <limits.h>
+
+#define V 4 // Number of vertices
+
+int graph[V][V] = {
+    {0, 10, 15, 20},
+    {10, 0, 35, 25},
+    {15, 35, 0, 30},
+    {20, 25, 30, 0}
+};
+
+int visitedAll = (1 << V) - 1; 
+
+int tsp(int mask, int pos) {
+    if (mask == visitedAll) {
+        return graph[pos][0]; 
+    }
+
+    int minCost = INT_MAX;
+    for (int city = 0; city < V; city++) {
+        if ((mask & (1 << city)) == 0) { 
+            int newMask = mask | (1 << city);
+            int cost = graph[pos][city] + tsp(newMask, city);
+            minCost = (cost < minCost) ? cost : minCost;
+        }
+    }
+    return minCost;
+}
+
+int main() {
+    int startVertex = 0; 
+    int mask = 1 << startVertex;
+
+    int minTourCost = tsp(mask, startVertex);
+    printf("Minimum tour cost: %d\n", minTourCost);
+
+    return 0;
+}
